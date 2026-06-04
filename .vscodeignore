@@ -1,0 +1,6 @@
+node_modules
+src
+.env
+*.map
+.vscode-test
+pr-noir-spec.md

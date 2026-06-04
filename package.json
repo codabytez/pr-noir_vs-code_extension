@@ -1,0 +1,93 @@
+{
+  "name": "pr-noir",
+  "displayName": "PR Noir — AI PR Review",
+  "description": "Terminal Noir AI-powered PR review inside VS Code",
+  "version": "1.0.0",
+  "publisher": "codabytez",
+  "icon": "media/icon.png",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/codabytez/pr-noir.git"
+  },
+  "license": "MIT",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Other",
+    "Linters"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "pr-noir.runReview",
+        "title": "PR Noir: Run AI Review",
+        "icon": "$(search)"
+      },
+      {
+        "command": "pr-noir.exportMarkdown",
+        "title": "PR Noir: Export Review as Markdown"
+      }
+    ],
+    "menus": {
+      "editor/title": [
+        {
+          "command": "pr-noir.runReview",
+          "group": "navigation"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "PR Noir",
+      "properties": {
+        "prNoir.provider": {
+          "type": "string",
+          "enum": [
+            "gemini",
+            "groq",
+            "openrouter"
+          ],
+          "default": "groq",
+          "description": "AI provider to use for code review"
+        },
+        "prNoir.geminiApiKey": {
+          "type": "string",
+          "default": "",
+          "description": "Gemini API key (provider: gemini). Get free key at aistudio.google.com"
+        },
+        "prNoir.groqApiKey": {
+          "type": "string",
+          "default": "",
+          "description": "Groq API key (provider: groq). Get free key at console.groq.com"
+        },
+        "prNoir.openrouterApiKey": {
+          "type": "string",
+          "default": "",
+          "description": "OpenRouter API key (provider: openrouter). Get free key at openrouter.ai"
+        },
+        "prNoir.cacheEnabled": {
+          "type": "boolean",
+          "default": true,
+          "description": "Cache API responses locally to avoid repeat calls"
+        },
+        "prNoir.maxDiffLines": {
+          "type": "number",
+          "default": 500,
+          "description": "Max diff lines to send to AI (trim large diffs)"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "pnpm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "lint": "eslint src --ext ts"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "@types/vscode": "^1.85.0",
+    "typescript": "^5.3.0"
+  }
+}
