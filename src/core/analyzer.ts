@@ -66,7 +66,7 @@ async function callGemini(apiKey: string, diff: string): Promise<string> {
     });
   } catch (err: unknown) {
     const cause = err instanceof Error ? err.message : String(err);
-    throw new Error(`Network error reaching Gemini API: ${cause}`);
+    throw new Error(`Network error reaching Gemini API: ${cause}`, { cause: err });
   }
 
   if (!response.ok) {
@@ -109,7 +109,7 @@ async function callOpenAICompat(
     });
   } catch (err: unknown) {
     const cause = err instanceof Error ? err.message : String(err);
-    throw new Error(`Network error: ${cause}`);
+    throw new Error(`Network error: ${cause}`, { cause: err });
   }
 
   if (!response.ok) {
@@ -135,7 +135,7 @@ export async function analyzeWithAI(diff: string): Promise<ReviewResult> {
     if (cached) return cached;
   }
 
-  let text = '';
+  let text: string;
 
   if (provider === 'gemini') {
     const apiKey: string = config.get('geminiApiKey', '');
