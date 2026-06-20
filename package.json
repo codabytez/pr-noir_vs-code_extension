@@ -2,7 +2,7 @@
   "name": "pr-noir",
   "displayName": "PR Noir — AI PR Review",
   "description": "Terminal Noir AI-powered PR review inside VS Code",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "publisher": "codabytez",
   "icon": "media/icon.png",
   "repository": {
@@ -10,6 +10,11 @@
     "url": "https://github.com/codabytez/pr-noir.git"
   },
   "license": "MIT",
+  "keywords": ["git", "ai", "code-review", "pr", "diff", "groq", "gemini", "openrouter", "linter"],
+  "galleryBanner": {
+    "color": "#1a1a2e",
+    "theme": "dark"
+  },
   "engines": {
     "vscode": "^1.85.0"
   },
@@ -83,11 +88,15 @@
     "vscode:prepublish": "pnpm run compile",
     "compile": "tsc -p ./",
     "watch": "tsc -watch -p ./",
-    "lint": "eslint src --ext ts"
+    "lint": "eslint src"
   },
   "devDependencies": {
+    "@eslint/js": "^10.0.1",
     "@types/node": "^20.0.0",
     "@types/vscode": "^1.85.0",
+    "@typescript-eslint/eslint-plugin": "^8.61.1",
+    "@typescript-eslint/parser": "^8.61.1",
+    "eslint": "^10.5.0",
     "typescript": "^5.3.0"
   }
 }
