@@ -8,7 +8,7 @@ export function getGitDiff(): string {
   const maxLines: number = vscode.workspace
     .getConfiguration('prNoir').get('maxDiffLines', 500);
 
-  let diff = '';
+  let diff: string;
   try {
     diff = execSync('git diff --staged', { cwd: workspaceRoot }).toString();
     if (!diff.trim()) {
@@ -17,8 +17,8 @@ export function getGitDiff(): string {
     if (!diff.trim()) {
       diff = execSync('git diff HEAD~1', { cwd: workspaceRoot }).toString();
     }
-  } catch (e) {
-    throw new Error('Git diff failed. Is this a git repo?');
+  } catch (err: unknown) {
+    throw new Error('Git diff failed. Is this a git repo?', { cause: err });
   }
 
   diff = diff.replace(/Binary files .* differ\n/g, '');

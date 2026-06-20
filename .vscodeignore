@@ -1,6 +1,13 @@
-node_modules
-src
-.env
+.github/
+.vscode/
+.vscode-test/
+src/
+node_modules/
+*.vsix
 *.map
-.vscode-test
+.gitignore
+.env
+eslint.config.mjs
+tsconfig.json
+pnpm-lock.yaml
 pr-noir-spec.md
